@@ -51,7 +51,6 @@ class UserController extends Controller
             ]);
 
         $data=$request->all();
-        $data['email'] = strtolower($request->email);
         $data['password']=Hash::make($request->password);
         $user=User::create($data);
         if ($user){
@@ -107,7 +106,6 @@ class UserController extends Controller
             ]);
 
         $data=$request->all();
-        $data['email'] = strtolower($request->email);
         if(!is_null($request->password)){
             $data['password']=Hash::make($request->password);
         }else{

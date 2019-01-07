@@ -3,16 +3,14 @@
         <thead>
         <tr>
             <th class="all  text-center">الاسم</th>
-            <th class="text-center">الايميل</th>
-            <th class="text-center">تاريخ الانشاء</th>
+            <th class="text-center col-sm-2">تاريخ الانشاء</th>
             <th class="text-center col-sm-2" >الاعدادات</th>
         </tr>
         </thead>
         <tbody>
         @foreach($users as $user)
             <tr>
-                <td>{!!$user->username!!}</td>
-                <td>{!!$user->email!!}</td>
+                <td>{!!$user->name!!}</td>
                 <td>{!!optional($user->created_at)->format('d-m-Y')!!}</td>
                 <td class="text-center">
                     <div class="mt-action-buttons">

@@ -50,7 +50,7 @@
                         <!-- BEGIN LOGO -->
                         <div class="page-logo">
 
-                                <h1>Eleman office</h1>
+                                <h1>{!! env('APP_NAME') !!}</h1>
 
                         </div>
                         <!-- END LOGO -->
