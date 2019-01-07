@@ -12,16 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth','auth:web'],function () {
 
-Route::resource('user', 'UserController');
-Route::resource('item', 'ItemController');
-Route::resource('category', 'CategoryController');
-Route::resource('order', 'OrderController');
-Route::resource('order_details', 'OrderDetailsController');
-Route::resource('log', 'LogController');
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::resource('user', 'UserController');
+    Route::resource('item', 'ItemController');
+    Route::resource('category', 'CategoryController');
+    Route::resource('order', 'OrderController');
+    Route::resource('order_details', 'OrderDetailsController');
+    Route::resource('log', 'LogController');
+});
