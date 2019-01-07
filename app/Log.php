@@ -9,7 +9,7 @@ class Log extends Model
 
     protected $table = 'pos_log';
     public $timestamps = true;
-    protected $fillable = array('user_id', 'model_id', 'model_type', 'operation');
+    protected $fillable = array('user_id', 'model_id', 'model_type', 'operation','status' ,'note');
 
     public function user()
     {

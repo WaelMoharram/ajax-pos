@@ -13,7 +13,8 @@ class CreatePosLogTable extends Migration {
 			$table->integer('user_id');
 			$table->integer('model_id');
 			$table->string('model_type');
-			$table->enum('operation', array('add', 'edit', 'delete'));
+			$table->enum('operation', array('index','show','edit','update','create','store','delete'));
+            $table->boolean('status');
 			$table->text('note')->nullable();
 		});
 	}
