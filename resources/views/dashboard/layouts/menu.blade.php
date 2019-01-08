@@ -25,6 +25,23 @@
                 </li>
 
                 <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">
+                    <a href="javascript:;"> <i class="fa fa-sitemap"></i> التصنيفات
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="dropdown-menu pull-left">
+                        <li aria-haspopup="true" class=" ">
+                            <a href="{{route('category.index')}}" class="nav-link  ">
+                                <i class="icon-docs"></i> عرض التصنيفات
+                                <span class="badge badge-success">{{\App\Category::count()}}</span>
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="{{route('category.create')}}" class="nav-link  "><i class="icon-plus"></i> اضافة تصنيف جديد </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">
                     <a href="javascript:;"> <i class="icon-users"></i> المستخدمين
                         <span class="arrow"></span>
                     </a>
