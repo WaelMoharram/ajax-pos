@@ -42,6 +42,23 @@
                 </li>
 
                 <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">
+                    <a href="javascript:;"> <i class="fa fa-sitemap"></i> الأصناف
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="dropdown-menu pull-left">
+                        <li aria-haspopup="true" class=" ">
+                            <a href="{{route('item.index')}}" class="nav-link  ">
+                                <i class="icon-docs"></i> عرض الأصناف
+                                <span class="badge badge-success">{{\App\Item::count()}}</span>
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="{{route('item.create')}}" class="nav-link  "><i class="icon-plus"></i> اضافة صنف جديد </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">
                     <a href="javascript:;"> <i class="icon-users"></i> المستخدمين
                         <span class="arrow"></span>
                     </a>

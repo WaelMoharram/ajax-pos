@@ -38,7 +38,6 @@ class CategoryController extends Controller
     public function create()
     {
         $category=new Category();
-
         return view('dashboard.categories.create',compact('category'));
     }
 
@@ -103,7 +102,6 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category=Category::find($id);
-
         return view('dashboard.categories.edit',compact('category'));
     }
 
@@ -117,7 +115,7 @@ class CategoryController extends Controller
     {
         $this->validate($request,
             [
-                'name' => 'unique:categories,name,'.$id.'',
+                'name' => 'unique:categories,name,'.$id,
                 'image' => 'image',
             ],
             [
