@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Log;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class CategoryController extends Controller 
 {
@@ -28,14 +27,6 @@ class CategoryController extends Controller
     public function index()
     {
         $categories= Category::all();
-        Log::create([
-            'user_id'    =>Auth::id(),
-            'model_id'   =>0,
-            'model_type' =>'categories',
-            'operation'  =>'index',
-            'status'     =>1,
-            'note'       =>'show index of categories'
-        ]);
         return view('dashboard.categories.index',compact('categories'));
     }
 
@@ -46,7 +37,9 @@ class CategoryController extends Controller
     */
     public function create()
     {
+        $category=new Category();
 
+        return view('dashboard.categories.create',compact('category'));
     }
 
     /**
@@ -56,7 +49,38 @@ class CategoryController extends Controller
     */
     public function store(Request $request)
     {
+        $this->validate($request,
+            [
+                'name' => 'required|unique:categories',
+                'image' => 'required|image',
+            ],
+            [
+                'name.required' => 'الاسم مطلوب',
+                'name.unique' => 'الاسم موجود من قبل',
+                'image.required' => 'الصورة مطلوبة',
+                'image.image' => 'مسموح برفع ملف من نوع صورة فقط',
 
+            ]
+        );
+        $data =$request->all();
+
+        $file = $request->file('image');
+        $img = Image::make($file);
+        //$img->resize(640, 480);
+        $extension = $file->getClientOriginalExtension(); // getting image extension
+        $fileName = time() . '' . rand(11111, 99999) . '.' . $extension; // renaming image
+        $dest = 'uploads/';
+        $img->save($dest . $fileName);
+        unset($data['image']);
+        $data['image'] = $dest . $fileName;
+
+        $category=Category::create($data);
+        if ($category){
+            flash('تمت الاضافة بنجاح')->success();
+            return redirect()->route('category.index');
+        }else{
+            return abort('403');
+        }
     }
 
     /**
@@ -78,7 +102,9 @@ class CategoryController extends Controller
     */
     public function edit($id)
     {
+        $category=Category::find($id);
 
+        return view('dashboard.categories.edit',compact('category'));
     }
 
     /**
@@ -87,9 +113,39 @@ class CategoryController extends Controller
     * @param  int  $id
     * @return Response
     */
-    public function update($id)
+    public function update(Request $request, $id)
     {
+        $this->validate($request,
+            [
+                'name' => 'unique:categories,name,'.$id.'',
+                'image' => 'image',
+            ],
+            [
+                'name.unique' => 'الاسم موجود من قبل',
+                'image.image' => 'مسموح برفع ملف من نوع صورة فقط',
+            ]
+        );
+        $category = Category::find($id);
+        $data = $request->all();
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $img = Image::make($file);
+            //$img->resize(640, 480);
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $fileName = time() . '' . rand(11111, 99999) . '.' . $extension; // renaming image
+            $dest = 'uploads/';
+            $img->save($dest . $fileName);
+            unset($data['image']);
+            $data['image'] = $dest . $fileName;
+        }
 
+        $category->fill($data)->save();
+        if ($category){
+            flash('تم التعديل بنجاح')->success();
+            return redirect()->route('category.index');
+        }else{
+            return abort('403');
+        }
     }
 
     /**
@@ -100,7 +156,9 @@ class CategoryController extends Controller
     */
     public function destroy($id)
     {
-
+        Category::destroy($id);
+        flash('تم الحذف بنجاح')->success();
+        return back();
     }
   
 }

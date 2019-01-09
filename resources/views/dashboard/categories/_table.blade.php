@@ -12,7 +12,7 @@
         @foreach($categories as $category)
             <tr>
                 <td>{!!$category->name!!}</td>
-                <td><img src="{!! url('uploads/'.$category->image) !!}" width="100px"></td>
+                <td><img src="{!! url($category->image) !!}" width="100px"></td>
                 <td>{!!$category->note!!}</td>
                 <td class="text-center">
                     <div class="mt-action-buttons">

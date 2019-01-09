@@ -4,10 +4,11 @@
         {!!Form::text('name',old('name'),['class'=>'form-control','autocomplete'=>'off'])!!}
     </div>
 
-    <div class="form-group form-md-line-input form-md-floating-label{{ $errors->has('image') ? ' has-error' : 'has-success' }}">
+    <div class="form-group col-md-12 {{ $errors->has('image') ? ' has-error' : 'has-success' }}">
         @if(isset($category->image))
-            <img src="{!! url('uploads/'.$category->image) !!}" width="100px">
+            <img src="{!! url($category->image) !!}" width="100px">
         @endif
+        <div class="clearfix"></div>
         <label for="form_control_1">الصوره</label>
         {!!Form::file('image',['class'=>'form-control'])!!}
     </div>

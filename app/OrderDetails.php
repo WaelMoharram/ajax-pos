@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class OrderDetails extends Model 
 {
@@ -12,7 +13,8 @@ class OrderDetails extends Model
     public $timestamps = true;
 
     use SoftDeletes;
-
+    use LogsActivity;
+    protected static $logAttributes = ['*'];
     protected $dates = ['deleted_at'];
     protected $fillable = array('order_id', 'item_id', 'price', 'amount');
 
@@ -28,7 +30,7 @@ class OrderDetails extends Model
 
     public function logs()
     {
-        return $this->morphMany('App\Log');
+        return $this->morphMany('App\Log','model');
     }
 
 }

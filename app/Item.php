@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Item extends Model 
 {
@@ -12,7 +13,8 @@ class Item extends Model
     public $timestamps = true;
 
     use SoftDeletes;
-
+    use LogsActivity;
+    protected static $logAttributes = ['*'];
     protected $dates = ['deleted_at'];
     protected $fillable = array('name', 'image', 'price', 'note', 'category_id');
 
@@ -28,7 +30,7 @@ class Item extends Model
 
     public function logs()
     {
-        return $this->morphMany('App\Log');
+        return $this->morphMany('App\Log','model');
     }
 
 }
