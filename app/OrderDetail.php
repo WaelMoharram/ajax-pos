@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class OrderDetails extends Model 
+class OrderDetail extends Model
 {
 
     protected $table = 'orders_details';

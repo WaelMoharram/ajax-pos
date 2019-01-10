@@ -1,6 +1,9 @@
 @extends('dashboard.layouts.layout')
 @section('title')تعديل صنف@endsection
 @section('address')تعديل بيانات صنف@endsection
+@section('container_class')
+    container
+@endsection
 @section('header')
     <link href="{!!asset('assets')!!}/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
     <link href="{!!asset('assets')!!}/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />

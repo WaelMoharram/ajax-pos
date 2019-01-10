@@ -1,6 +1,9 @@
 @extends('dashboard.layouts.layout')
 @section('title')اضافه مستخدم@endsection
 @section('address')اضافة مستخدم جديد@endsection
+@section('container_class')
+    container
+@endsection
 @section('header')@endsection
 @section('content')
     <div class="row">

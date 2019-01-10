@@ -24,6 +24,12 @@
                     </a>
                 </li>
 
+                <li aria-haspopup="true">
+                    <a href="{{route('order.index')}}"> <i class="fa fa-opencart"></i> ابدا البيع
+                        <span class="arrow"></span>
+                    </a>
+                </li>
+
                 <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">
                     <a href="javascript:;"> <i class="fa fa-sitemap"></i> التصنيفات
                         <span class="arrow"></span>
@@ -42,7 +48,7 @@
                 </li>
 
                 <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">
-                    <a href="javascript:;"> <i class="fa fa-sitemap"></i> الأصناف
+                    <a href="javascript:;"> <i class="fa fa-plus-square"></i> الأصناف
                         <span class="arrow"></span>
                     </a>
                     <ul class="dropdown-menu pull-left">

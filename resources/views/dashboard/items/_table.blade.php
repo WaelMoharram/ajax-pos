@@ -3,7 +3,7 @@
         <thead>
         <tr>
             <th class="all  text-center">الاسم</th>
-            <th class="text-center">الصنف</th>
+            <th class="text-center">التصنيف</th>
             <th class="text-center">الصورة</th>
             <th class="text-center">السعر</th>
             <th class="text-center">ملاحظات</th>

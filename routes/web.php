@@ -25,6 +25,9 @@ Route::group(['middleware' => 'auth','auth:web'],function () {
     Route::resource('item', 'ItemController');
     Route::resource('category', 'CategoryController');
     Route::resource('order', 'OrderController');
+
+    Route::get('/add_to_order/{id}', 'OrderController@addToOrder')->name('add_to_order');
+    Route::get('/delete_from_order/{id}', 'OrderController@deleteFromOrder')->name('delete_from_order');
     Route::resource('order_details', 'OrderDetailsController');
     Route::resource('log', 'LogController');
 });

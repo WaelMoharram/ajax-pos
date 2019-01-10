@@ -86,7 +86,7 @@
                     <!-- BEGIN PAGE CONTENT BODY -->
                     <div class="page-content">
 
-                        <div class="container">
+                        <div class="@yield('container_class')">
 
                             <!-- BEGIN PAGE CONTENT INNER -->
                             @include('flash::message')

@@ -1,6 +1,9 @@
 @extends('dashboard.layouts.layout')
 @section('title')تعديل مستخدم@endsection
 @section('address')تعديل بيانات مستخدم@endsection
+@section('container_class')
+    container
+@endsection
 @section('header')@endsection
 @section('content')
     <div class="row">
