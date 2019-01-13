@@ -28,6 +28,8 @@ Route::group(['middleware' => 'auth','auth:web'],function () {
 
     Route::get('/add_to_order/{id}', 'OrderController@addToOrder')->name('add_to_order');
     Route::get('/delete_from_order/{id}', 'OrderController@deleteFromOrder')->name('delete_from_order');
+    Route::get('/add_ded_one_to_item/{id}','OrderController@addDedOneToItem')->name('add_ded_one_to_item');
+
     Route::resource('order_details', 'OrderDetailsController');
     Route::resource('log', 'LogController');
 });

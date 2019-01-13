@@ -6,8 +6,10 @@ use App\Category;
 use App\Item;
 use App\Order;
 use App\OrderDetail;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 
 class OrderController extends Controller 
 {
@@ -42,7 +44,7 @@ class OrderController extends Controller
     {
         $item = Item::find($id);
         $order = Order::where('status','open')->first();
-        $old = OrderDetail::where('item_id',$id)->first();
+        $old = OrderDetail::where('item_id',$id)->where('order_id',$order->id)->first();
         if($old){
             $old->amount += 1;
             $old->save();
@@ -77,6 +79,29 @@ class OrderController extends Controller
             'total'=>number_format(OrderDetail::where('order_id',$order->id)->sum(DB::raw('amount * price')), 2, '.', '')
         ];
         return response()->json($data);
+    }
+
+    public function addDedOneToItem(Request $request,$id)
+    {
+        $order = Order::where('status','open')->first();
+        if ($request->type == 'add'){
+            OrderDetail::find($id)->increment('amount');
+        }elseif($request->type == 'ded'){
+            $item = OrderDetail::find($id);
+            $item->decrement('amount');
+            if ($item->amount == 0){
+                OrderDetail::destroy($id);
+            }
+        }
+
+        $data=[
+            'status'=>1,
+            'message'=>'done',
+            'data'=>OrderDetail::with('item')->where('order_id',$order->id)->get(),
+            'total'=>number_format(OrderDetail::where('order_id',$order->id)->sum(DB::raw('amount * price')), 2, '.', '')
+        ];
+        return response()->json($data);
+
     }
 
     /**

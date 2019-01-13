@@ -87,11 +87,11 @@
                                                 <div class="col-md-5">
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                            <span class="input-group-addon ">
+                                                            <span class="input-group-addon" id="ded-{!! $detail->id !!}">
                                                                 <i class="fa fa-minus"></i>
                                                             </span>
                                                             <input type="text" class="text-center form-control" value="{!! $detail->amount !!}" name="{!! $detail->id !!}" disabled >
-                                                            <span class="input-group-addon ">
+                                                            <span class="input-group-addon" id="add-{!! $detail->id !!}">
                                                                 <i class="fa fa-plus"></i>
                                                             </span>
                                                         </div>
@@ -153,11 +153,11 @@
                             '<div class="col-md-5">\n'+
                             '<div class="form-group">\n'+
                             '<div class="input-group">\n'+
-                            '<span class="input-group-addon ">\n'+
+                            '<span class="input-group-addon" id="ded-' + data.data[e].id + '">\n'+
                             '<i class="fa fa-minus"></i>\n'+
                             '</span>\n'+
                             '<input type="text" class="text-center form-control" value="' + data.data[e].amount + '" name="' + data.data[e].id + '" disabled >\n'+
-                        '<span class="input-group-addon ">\n'+
+                        '<span class="input-group-addon" id="add-' + data.data[e].id + '">\n'+
                             '<i class="fa fa-plus"></i>\n'+
                             '</span>\n'+
                             '</div>\n'+
@@ -174,7 +174,7 @@
 
         });
         $(document).on('click','.delete-item', function () {
-            var fid = this.id
+            var fid = this.id;
             var id=fid.substring(2, fid.length);
             console.log(id);
             $.ajax({
@@ -184,6 +184,59 @@
                     $('#row-'+ id).remove();
                     $('#total').children().remove();
                     $('#total').append('<h4>' + data.total + ' جنيه</h4>');
+                }
+            })
+
+        });
+        $(document).on('click','.input-group-addon', function () {
+            var fid = this.id;
+            var type = fid.substring(0, 3);
+            var id=fid.substring(4, fid.length);
+            console.log(id);
+            $.ajax({
+                url: '{{url('add_ded_one_to_item')}}' + '/' + id,
+                type: 'GET',
+                data: {
+                    "type": type,
+                },
+                success: function (data) {
+                    console.log(data);
+                    $('#order_details').children().remove();
+                    $('#total').children().remove();
+                    $('#total').append('<h4>' + data.total + ' جنيه</h4>');
+                    $.each(data.data, function (e) {
+                        $('#order_details').append('<div class="col-xs-12 right-peice text-center center-block" id="row-' + data.data[e].id + '">\n'+
+                            '<div class="row">\n'+
+                            '<div class="col-md-2">\n'+
+                            '<div class="media">\n'+
+                            '<div class="">\n'+
+                            '<img src="' + data.data[e].item.image + '" class=" text-center">\n'+
+                            '</div>\n'+
+                            '<br>\n'+
+                            '<div class="media-body">\n'+
+                            '<h6 class="media-heading text-center">' + data.data[e].item.name + '</h6>\n'+
+                            '</div>\n'+
+                            '</div>\n'+
+                            '</div>\n'+
+                            '<div class="col-md-5">\n'+
+                            '<div class="form-group">\n'+
+                            '<div class="input-group">\n'+
+                            '<span class="input-group-addon"  id="ded-' + data.data[e].id + '">\n'+
+                            '<i class="fa fa-minus"></i>\n'+
+                            '</span>\n'+
+                            '<input type="text" class="text-center form-control" value="' + data.data[e].amount + '" name="' + data.data[e].id + '" disabled >\n'+
+                            '<span class="input-group-addon"  id="add-' + data.data[e].id + '">\n'+
+                            '<i class="fa fa-plus"></i>\n'+
+                            '</span>\n'+
+                            '</div>\n'+
+                            '</div>\n'+
+                            '</div>\n'+
+                            '<div class="col-md-2"><h6 class="text-center">' + data.data[e].price + ' جنيه</h6></div>\n'+
+                            '<div class="col-md-2"><h6 class="text-center">' + data.data[e].amount * data.data[e].price + ' جنيه</h6></div>\n'+
+                            '<div class="col-md-1"><button id="d-' + data.data[e].id + '" class="delete-item btn btn-danger"><i class="fa fa-trash"></i></button></div>\n'+
+                            '</div>\n'+
+                            '</div>')
+                    });
                 }
             })
 
