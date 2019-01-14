@@ -16,7 +16,7 @@ class OrderDetail extends Model
     use LogsActivity;
     protected static $logAttributes = ['*'];
     protected $dates = ['deleted_at'];
-    protected $fillable = array('order_id', 'item_id', 'price', 'amount');
+    protected $fillable = array('order_id', 'price', 'amount', 'size_id');
 
     public function order()
     {
@@ -28,9 +28,9 @@ class OrderDetail extends Model
         return $this->belongsTo('App\Item');
     }
 
-    public function logs()
+    public function size()
     {
-        return $this->morphMany('App\Log','model');
+        return $this->belongsTo('App\Size');
     }
 
 }

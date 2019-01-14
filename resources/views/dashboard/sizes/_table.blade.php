@@ -3,43 +3,37 @@
         <thead>
         <tr>
             <th class="all  text-center">الاسم</th>
-            <th class="text-center">التصنيف</th>
-            <th class="text-center">الصورة</th>
-            <th class="text-center">ملاحظات</th>
+            <th class="text-center">السعر</th>
             <th class="text-center col-sm-3" >الاعدادات</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($items as $item)
+        @foreach($sizes as $size)
             <tr>
-                <td>{!!$item->name!!}</td>
-                <td>{!!optional($item->category)->name!!}</td>
-                <td><img src="{!! url($item->image) !!}" width="100px"></td>
-                <td>{!!$item->note!!}</td>
+                <td>{!!$size->name!!}</td>
+                <td>{!!$size->price!!}</td>
                 <td class="text-center">
                     <div class="mt-action-buttons">
-                        <div class="btn-group btn-group-circle">
-                            <a href="{{route('sizes',[$item->id])}}" class="btn btn-outline blue btn-sm"><i class="fa fa-sitemap"></i> الأحجام</a>
-                            <a href="{{route('item.edit',[$item->id])}}" class="btn btn-outline green btn-sm"><i class="fa fa-pencil"></i> تعديل</a>
-                            <a data-toggle="modal" data-target="#delete{{$item->id}}" class="btn btn-outline red btn-sm"><i class="fa fa-trash"></i>حذف</a>
+                        <div class="btn-group">
+                            <a data-toggle="modal" data-target="#delete{{$size->id}}" class="btn btn-outline red btn-sm"><i class="fa fa-trash"></i>حذف</a>
                         </div>
                     </div>
                 </td>
             </tr>
-            <div id="delete{{$item->id}}" class="modal fade" role="dialog">
+            <div id="delete{{$size->id}}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">حذف الصنف</h4>
+                            <h4 class="modal-title">حذف الحجم</h4>
                         </div>
                         <div class="modal-body">
-                            <p>هل أنت متأكد من حذف الصنف {{$item->name}} ؟</p>
+                            <p>هل أنت متأكد من حذف الحجم {{$size->name}} ؟</p>
                         </div>
                         <div class="modal-footer">
-                            {!!Form::open(['route'=>['item.destroy',$item->id],'method'=>'POST','files'=>'true'])!!}
-                                {{ method_field('DELETE') }}
+                            {!!Form::open(['route'=>['delete_size'],'method'=>'get','files'=>'true'])!!}
+                            {!! Form::hidden('id',$size->id) !!}
                                 <button type="submit" class="btn btn-danger">حذف</button>
                             {!! Form::close() !!}
                             <button type="button" class="btn btn-default" data-dismiss="modal">لا</button>

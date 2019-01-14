@@ -30,6 +30,14 @@ Route::group(['middleware' => 'auth','auth:web'],function () {
     Route::get('/delete_from_order/{id}', 'OrderController@deleteFromOrder')->name('delete_from_order');
     Route::get('/add_ded_one_to_item/{id}','OrderController@addDedOneToItem')->name('add_ded_one_to_item');
 
+    Route::get('/save_order/{id}','OrderController@saveOrder')->name('save_order');
+
+    Route::get('/sizes/{id}','SizeController@index')->name('sizes');
+    Route::post('/add_size','SizeController@store')->name('add_size');
+    Route::get('/delete_size','SizeController@destroy')->name('delete_size');
+
+    Route::get('/bill/{id}','OrderController@bill')->name('bill');
+
     Route::resource('order_details', 'OrderDetailsController');
     Route::resource('log', 'LogController');
 });

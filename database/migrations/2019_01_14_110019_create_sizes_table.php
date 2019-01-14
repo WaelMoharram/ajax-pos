@@ -3,23 +3,22 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateItemsTable extends Migration {
+class CreateSizesTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('items', function(Blueprint $table) {
+		Schema::create('sizes', function(Blueprint $table) {
 			$table->increments('id');
 			$table->timestamps();
 			$table->softDeletes();
 			$table->string('name');
-			$table->string('image');
-			$table->text('note')->nullable();
-			$table->integer('category_id');
+			$table->decimal('price');
+			$table->integer('item_id');
 		});
 	}
 
 	public function down()
 	{
-		Schema::drop('items');
+		Schema::drop('sizes');
 	}
 }

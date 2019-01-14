@@ -17,15 +17,11 @@ class Order extends Model
     protected static $logAttributes = ['*'];
     protected $dates = ['deleted_at'];
     protected $fillable = array('status');
+    protected $with = ['details'];
 
     public function details()
     {
-        return $this->hasMany('App\OrderDetails');
-    }
-
-    public function logs()
-    {
-        return $this->morphMany('App\Log','model');
+        return $this->hasMany('App\OrderDetail');
     }
 
 }

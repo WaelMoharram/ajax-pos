@@ -28,9 +28,9 @@ class Item extends Model
         return $this->hasMany('App\OrderDetails');
     }
 
-    public function logs()
+    public function sizes()
     {
-        return $this->morphMany('App\Log','model');
+        return $this->hasMany('App\Size');
     }
 
 }

@@ -1,12 +1,7 @@
 <div class="form-body">
-    <div class="form-group col-md-12  {{ $errors->has('name') ? ' has-error' : 'has-success' }} ">
+    <div class="form-group col-md-6  {{ $errors->has('name') ? ' has-error' : 'has-success' }} ">
         <label for="form_control_1">اسم الصنف</label>
         {!!Form::text('name',old('name'),['class'=>'form-control','autocomplete'=>'off'])!!}
-    </div>
-
-    <div class="form-group col-md-6  {{ $errors->has('name') ? ' has-error' : 'has-success' }} ">
-        <label for="form_control_1">السعر</label>
-        {!!Form::number('price',old('price'),['class'=>'form-control','autocomplete'=>'off','step'=>'any'])!!}
     </div>
 
     <div class="form-group col-md-6 {{ $errors->has('category_id') ? ' has-error' :'has-success' }} ">

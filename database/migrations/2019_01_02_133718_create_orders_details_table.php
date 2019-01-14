@@ -12,7 +12,7 @@ class CreateOrdersDetailsTable extends Migration {
 			$table->timestamps();
 			$table->softDeletes();
 			$table->integer('order_id');
-			$table->integer('item_id');
+            $table->integer('size_id');
 			$table->decimal('price');
 			$table->decimal('amount');
 		});

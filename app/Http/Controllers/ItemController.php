@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Item;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -54,7 +53,6 @@ class ItemController extends Controller
             [
                 'name' => 'required|unique:items',
                 'image' => 'required|image',
-                'price' => 'required',
                 'category_id' => 'required',
             ],
             [
@@ -62,7 +60,6 @@ class ItemController extends Controller
                 'name.unique' => 'الاسم موجود من قبل',
                 'image.required' => 'الصورة مطلوبة',
                 'image.image' => 'مسموح برفع ملف من نوع صورة فقط',
-                'price.required' => 'السعر مطلوب',
                 'category_id.required' => 'التصنيف مطلوب',
             ]
         );
@@ -121,14 +118,12 @@ class ItemController extends Controller
             [
                 'name' => 'required|unique:items,name,'.$id,
                 'image' => 'image',
-                'price' => 'required',
                 'category_id' => 'required',
             ],
             [
                 'name.required' => 'الاسم مطلوب',
                 'name.unique' => 'الاسم موجود من قبل',
                 'image.image' => 'مسموح برفع ملف من نوع صورة فقط',
-                'price.required' => 'السعر مطلوب',
                 'category_id.required' => 'التصنيف مطلوب',
             ]
         );

@@ -6,6 +6,7 @@ use App\Category;
 use App\Item;
 use App\Order;
 use App\OrderDetail;
+use App\Size;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -42,17 +43,17 @@ class OrderController extends Controller
 
     public function addToOrder($id)
     {
-        $item = Item::find($id);
+        $size = Size::with('item')->find($id);
         $order = Order::where('status','open')->first();
-        $old = OrderDetail::where('item_id',$id)->where('order_id',$order->id)->first();
+        $old = OrderDetail::where('size_id',$id)->where('order_id',$order->id)->first();
         if($old){
             $old->amount += 1;
             $old->save();
         }else{
             OrderDetail::create([
                 'order_id'=>$order->id,
-                'item_id'=>$item->id,
-                'price'=>$item->price,
+                'size_id'=>$id,
+                'price'=>$size->price,
                 'amount'=>1
             ]);
         }
@@ -60,8 +61,8 @@ class OrderController extends Controller
         $data=[
             'status'=>1,
             'message'=>'done',
-            'data'=>OrderDetail::with('item')->where('order_id',$order->id)->get(),
-            'total'=>number_format(OrderDetail::where('order_id',$order->id)->sum(DB::raw('amount * price')), 2, '.', '')
+            'data'=>OrderDetail::with('size')->where('order_id',$order->id)->get(),
+            'total'=>number_format(OrderDetail::where('order_id',$order->id)->sum(DB::raw('amount * price')), 2, '.','')
         ];
         return response()->json($data);
     }
@@ -97,11 +98,30 @@ class OrderController extends Controller
         $data=[
             'status'=>1,
             'message'=>'done',
-            'data'=>OrderDetail::with('item')->where('order_id',$order->id)->get(),
+            'data'=>OrderDetail::with('size')->where('order_id',$order->id)->get(),
             'total'=>number_format(OrderDetail::where('order_id',$order->id)->sum(DB::raw('amount * price')), 2, '.', '')
         ];
         return response()->json($data);
 
+    }
+
+    public function saveOrder()
+    {
+        $order = Order::where('status','open')->first();
+        $id=$order->id;
+        $order->update(['status'=>'finished']);
+        $data=[
+            'status'=>1,
+            'message'=>'done',
+            'id'=>$id
+        ];
+        return response()->json($data);
+    }
+
+    public function bill($id)
+    {
+        $order = Order::find($id);
+        return view('dashboard.bill.index',compact('order'));
     }
 
     /**
