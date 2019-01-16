@@ -35,7 +35,7 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th class="col-xs-9">Product</th>
+                        <th class="col-xs-9 text-primary">Product</th>
                         <th class="col-xs-1">#</th>
                         <th class="col-xs-1 text-center">Price</th>
                         <th class="col-xs-1 text-center">Total</th>
@@ -66,6 +66,5 @@
 </div>
 <script>
     window.print();
-    window.close();
-
+    // window.close();
 </script>
