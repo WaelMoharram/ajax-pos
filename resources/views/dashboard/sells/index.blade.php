@@ -61,7 +61,7 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class='col-sm-5'>
+                        <div class='col-sm-5' style="border: 2px solid orange;border-radius: 22px;">
                             <div>
                                 <h3 class="text-center h3">تفاصيل الطلب رقم # {!! $order->id !!}</h3>
                                 <div class="col-xs-12 text-center">
@@ -93,6 +93,7 @@
                                                         <br>
                                                         <div class="media-body">
                                                             <h6 class="media-heading text-center">{!! $detail->size->item->name !!}</h6>
+                                                            <h6 class="media-heading text-center">{!! $detail->size->name !!}</h6>
                                                         </div>
                                                     </div>
                                                 </div>

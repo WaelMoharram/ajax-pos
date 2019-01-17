@@ -185,7 +185,10 @@ class OrderController extends Controller
     */
     public function destroy($id)
     {
-
+        Order::destroy($id);
+        OrderDetail::where('order_id',$id)->delete();
+        flash('تم الحذف بنجاح')->success();
+        return back();
     }
   
 }

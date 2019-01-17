@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Size;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class SizeController extends Controller 
 {
@@ -39,7 +40,9 @@ class SizeController extends Controller
 
         $this->validate($request,
             [
-                'name' => 'required|unique:items',
+                'name' => ['required',Rule::unique('sizes')->where(function ($query) use($request) {
+                    return $query->where('item_id', $request->item_id);
+                })],
                 'price' => 'required',
             ],
             [
@@ -48,6 +51,7 @@ class SizeController extends Controller
                 'price.required' => 'السعر مطلوب',
             ]
         );
+
         $data =$request->all();
 
         $size=Size::create($data);

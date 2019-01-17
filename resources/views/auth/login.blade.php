@@ -78,12 +78,15 @@
             @endif
 
         </div>
-        <div class="login-form">
-            <button type="submit" class="btn blue uppercase">دخول</button>
+        <div class="login-form row">
+
             <label class="rememberme check mt-checkbox mt-checkbox-outline">
                 <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} />تذكرنى
                 <span></span>
             </label>
+            <button type="submit" class="btn blue uppercase col-md-12">دخول</button>
+
+
         </div>
 
     </form>

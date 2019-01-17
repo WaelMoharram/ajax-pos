@@ -25,12 +25,12 @@ class OrderDetail extends Model
 
     public function item()
     {
-        return $this->belongsTo('App\Item');
+        return $this->belongsTo('App\Item')->withTrashed();
     }
 
     public function size()
     {
-        return $this->belongsTo('App\Size');
+        return $this->belongsTo('App\Size')->withTrashed();
     }
 
 }
