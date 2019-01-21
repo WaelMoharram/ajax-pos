@@ -238,6 +238,7 @@
                             '<br>\n'+
                             '<div class="media-body">\n'+
                             '<h6 class="media-heading text-center">' + data.data[e].size.item.name + '</h6>\n'+
+                            '<h6 class="media-heading text-center">' + data.data[e].size.name + '</h6>\n'+
                             '</div>\n'+
                             '</div>\n'+
                             '</div>\n'+
