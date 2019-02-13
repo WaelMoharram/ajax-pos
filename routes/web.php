@@ -40,4 +40,6 @@ Route::group(['middleware' => 'auth','auth:web'],function () {
 
     Route::resource('order_details', 'OrderDetailsController');
     Route::resource('log', 'LogController');
+
+    Route::get('daily_report', 'HomeController@dailyReport')->name('daily_report');
 });

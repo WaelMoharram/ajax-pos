@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('dashboard.home');
     }
+
+
+    public function dailyReport(Request $request){
+
+        $date = date('Y-m-d');
+        if ($request->has('date')){
+            $date = date('Y-m-d',strtotime($request->date));
+        }
+        return view('dashboard.report.daily_sales',compact('date'));
+    }
 }

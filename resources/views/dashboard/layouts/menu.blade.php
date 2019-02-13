@@ -80,6 +80,39 @@
                         </li>
                     </ul>
                 </li>
+
+                <li aria-haspopup="true" class="">
+                    <a data-toggle="modal" data-target="#daily_report" ><i class="icon-home"></i>تقرير مبيعات يومية
+                        <span class="arrow"></span>
+                    </a>
+
+                </li>
+
+                <div id="daily_report" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">حذف الحجم</h4>
+                            </div>
+                            {!!Form::open(['route'=>['daily_report'],'method'=>'get','files'=>'true'])!!}
+                            <div class="modal-body">
+                                <div class="form-group col-md-6  {{ $errors->has('name') ? ' has-error' : 'has-success' }} ">
+                                    <label for="form_control_1">التاريخ</label>
+                                    {!!Form::date('date',old('date'),['class'=>'form-control','autocomplete'=>'off'])!!}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="submit" class="btn btn-success">تصفية</button>
+
+                                <button type="button" class="btn btn-default" data-dismiss="modal">لا</button>
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
+                </div>
             </ul>
         </div>
         <!-- END MEGA MENU -->
