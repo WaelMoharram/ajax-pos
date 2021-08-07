@@ -17,6 +17,7 @@
         }
     </style>
 @endsection
+@dd('test')
 @section('content')
     <div class="row">
         <div class="col-md-12">
