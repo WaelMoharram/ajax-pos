@@ -136,7 +136,7 @@
         </div>
     </div>
     <div id="loading"></div>
-    @dd('test')
+{{--    @dd('test')--}}
 @endsection
 @section('footer')
     <script src="{!!asset('assets')!!}/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script>
