@@ -32,7 +32,7 @@ class OrderController extends Controller
     */
     public function index()
     {
-        return 'wael';
+        //return 'wael';
         $categories =Category::all();
         $order = Order::where('status','open')->first();
         if(!$order){
