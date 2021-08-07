@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
-class OrderController extends Controller 
+class OrderController extends Controller
 {
 
     /**
@@ -32,6 +32,7 @@ class OrderController extends Controller
     */
     public function index()
     {
+        return 'wael';
         $categories =Category::all();
         $order = Order::where('status','open')->first();
         if(!$order){
@@ -190,7 +191,7 @@ class OrderController extends Controller
         flash('تم الحذف بنجاح')->success();
         return back();
     }
-  
+
 }
 
 ?>
