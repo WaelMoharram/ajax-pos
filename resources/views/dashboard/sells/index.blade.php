@@ -17,7 +17,7 @@
         }
     </style>
 @endsection
-@dd('test')
+
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -30,7 +30,7 @@
                                     <a data-toggle="tab" href="#category-{!! $category->id !!}">{!! $category->name !!}</a>
                                 @endforeach
 
-
+                                    @dd('test')
                             </div>
                             <div class="tab-content">
                                 @foreach($categories as $category)
