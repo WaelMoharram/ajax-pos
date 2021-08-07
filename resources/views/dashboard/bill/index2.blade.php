@@ -44,6 +44,7 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     @foreach($order->details as $row)
                         <tr>
                             <td class=""><em>{!! $row->size->item->name !!} - {!! $row->size->name !!}</em></td>

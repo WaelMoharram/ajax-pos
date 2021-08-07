@@ -20,6 +20,7 @@
             <!-- END EXAMPLE TABLE PORTLET-->
         </div>
     </div>
+
 @endsection
 @section('footer')@endsection
 

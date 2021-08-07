@@ -60,6 +60,7 @@
 
                     <tr>
 
+
                         <td colspan="4" class="text-center"><h4><strong>Total: {!! number_format(\App\OrderDetail::where('order_id',$order->id)->sum(DB::raw('amount * price')), 2, '.', '') !!}</strong></h4></td>
                     </tr>
                     </tbody>
