@@ -30,7 +30,7 @@
                                     <a data-toggle="tab" href="#category-{!! $category->id !!}">{!! $category->name !!}</a>
                                 @endforeach
 
-                                    @dd('test')
+
                             </div>
                             <div class="tab-content">
                                 @foreach($categories as $category)
@@ -136,6 +136,7 @@
         </div>
     </div>
     <div id="loading"></div>
+    @dd('test')
 @endsection
 @section('footer')
     <script src="{!!asset('assets')!!}/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script>
