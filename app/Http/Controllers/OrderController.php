@@ -38,7 +38,7 @@ class OrderController extends Controller
         if(!$order){
             $order =Order::create(['status'=>'open']);
         }
-return $order;
+return $categories;
         return view('dashboard.sells.index',compact('categories','order'));
     }
 
